@@ -6,8 +6,8 @@ from pyspark.sql import SparkSession, functions, types
 spark = SparkSession.builder.appName('wikipedia popular').getOrCreate()
 spark.sparkContext.setLogLevel('WARN')
 
-assert sys.version_info >= (3, 8)
-assert spark.version >= '3.2'
+assert sys.version_info >= (3, 8) # make sure we have Python 3.8+
+assert spark.version >= '3.2' # make sure we have Spark 3.2+
 
 
 # Schema for the pagecounts files
@@ -49,7 +49,7 @@ def main(in_directory, out_directory):
         (functions.col('language') == 'en') &
         (functions.col('title') != 'Main_Page') &
         (~functions.col('title').startswith('Special:'))
-    ).cache()
+    )
     
     # Find the maximum views for each hour
     max_views_per_hour = english_pages.groupBy('hour').agg(
@@ -57,18 +57,14 @@ def main(in_directory, out_directory):
     )
     
     # Join back to get the pages that have the maximum views for each hour
-    # Use aliases to avoid ambiguous column references
-    pages_alias = english_pages.alias('pages')
-    max_views_alias = max_views_per_hour.alias('max_views')
-    
-    most_popular = pages_alias.join(
-        max_views_alias,
-        (functions.col('pages.hour') == functions.col('max_views.hour')) &
-        (functions.col('pages.views') == functions.col('max_views.max_views'))
+    most_popular = english_pages.join(
+        max_views_per_hour,
+        (english_pages.hour == max_views_per_hour.hour) &
+        (english_pages.views == max_views_per_hour.max_views)
     ).select(
-        functions.col('pages.hour'),
-        functions.col('pages.title'),
-        functions.col('pages.views')
+        english_pages.hour,
+        english_pages.title,
+        english_pages.views
     )
     
     # Sort by hour and title (for ties)
