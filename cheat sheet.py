@@ -102,3 +102,14 @@ model = MLPRegressor(hidden_layer_sizes=(8, 6),
                      
 model.fit(X_train, y_train)
 print(model.score(X_valid, y_valid))
+
+
+import sys
+from pyspark.sql import SparkSession, \
+    functions, types, Row
+spark = SparkSession.builder \
+    .getOrCreate()
+spark.sparkContext.setLogLevel('WARN')
+
+assert sys.version_info >= (3, 10)
+assert spark.version >= '3.5'
