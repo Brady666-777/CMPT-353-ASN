@@ -1,6 +1,6 @@
 import sys
 import pandas as pd
-from scipy.stats import fisher_exact, mannwhitneyu
+from scipy.stats import chi2_contingency, mannwhitneyu
 
 OUTPUT_TEMPLATE = (
     '"Did more/less users use the search feature?" p-value:  {more_users_p:.3g}\n'
@@ -21,7 +21,7 @@ def run_ab_test(df):
     control_search = (control['search_count'] > 0).sum()
     control_nosearch = (control['search_count'] == 0).sum()
     contingency = [[treated_search, treated_nosearch], [control_search, control_nosearch]]
-    _, p1 = fisher_exact(contingency)
+    _, p1, _, _ = chi2_contingency(contingency)
 
     # test 2: number of searches per user (nonparametric)
     _, p2 = mannwhitneyu(treated['search_count'], control['search_count'], alternative='two-sided')

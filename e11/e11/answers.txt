@@ -1,0 +1,10 @@
+1. In my reddit_relative.py, I cached two intermediate DataFrames:
+   - averages: The average scores per subreddit (used in join operations)
+   - max_rel_scores: The maximum relative scores per subreddit (used in final join)
+
+   If I hadn't used .cache() anywhere, these DataFrames would be recomputed every time they're used. Since both are used in join operations (averages is used to calculate relative scores, and max_rel_scores is used to filter for the best comments), without caching, Spark would recalculate the entire lineage each time. This would mean:
+   - The average calculation would be performed multiple times
+   - The groupBy operations would be repeated
+   - The performance would be significantly slower, especially with multiple joins
+
+2. Marking DataFrames for broadcast significantly improved the running time of the "best author" program. The broadcast hint tells Spark to send the smaller DataFrame (averages and max_rel_scores) to all executor nodes, avoiding expensive shuffle operations. Since both join operations involve one large DataFrame (comments) and one small DataFrame (per-subreddit aggregates), broadcasting the smaller DataFrames reduces network overhead and makes the joins much more efficient. Without broadcasting, Spark would need to shuffle both DataFrames across the network, which is much slower for large datasets.
