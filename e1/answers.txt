@@ -1,0 +1,26 @@
+Question 1: Where you did the same calculations with NumPy and Pandas, which did you find easier to work with? Which code do you think is easier to read?
+
+Answer:
+Pandas was generally easier to work with and its code was more readable. 
+Pandas' use of labeled data makes the code more self-explanatory. For example, getting the city with the lowest precipitation 
+with Pandas' `.idxmin()` immediately returns the city's name, whereas NumPy's `.argmin()` returns a number index, 
+which requires an extra step to map back to a name. The ability to load data directly from a labeled CSV file into a structured 
+DataFrame also makes the initial setup more straightforward than handling raw NumPy arrays.
+
+
+Question 2: What were the running times of the two pivot_months_* functions? How can you explain the difference?
+
+Answer:
+The running times observed from the timing.ipynb notebook were:
+
+- pivot_months_loops (loop-based): 222 ms ± 3.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+- pivot_months_pandas (vectorized): 11.4 ms ± 220 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+The `pivot_months_pandas` function is approximately 20 times faster than the `pivot_months_loops` function. 
+This dramatic difference in performance is probably due to vectorization.
+
+The Pandas function uses vectorized operations like `.groupby()` and `.pivot()` which are executed in a highly optimized, 
+compiled backend. These operations work on entire arrays of data at once, avoiding the overhead of the 
+Python interpreter. The `pivot_months_loops` function, by contrast, iterates through the data row-by-row within Python, 
+which is much slower because each step must be processed by the interpreter, incurring a large overhead for every single row.
+

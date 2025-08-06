@@ -1,0 +1,7 @@
+1. Based on your results for the last question, do you think daily temperatures are a good way to predict population density? Briefly explain why or why not.
+
+No, daily temperatures are not a good way to predict population density. Because the correlation is not obviously shown in the graph. While there may be some relationship between climate and where people choose to live, population density is influenced by many other factors 
+
+2. Several of the (larger) data files were kept compressed on disk throughout the analysis, so they needed to be decompressed every time we ran our program: that seems inefficient. Why might this be faster than working with an uncompressed .json or .csv data?
+
+Compressed files are often faster to read because they take up less space on disk, reducing the amount of data that needs to be transferred from storage to memory. Disk I/O is typically slower than CPU decompression, so reading a smaller compressed file and decompressing it in memory can be faster than reading a much larger uncompressed file from disk, especially for large datasets.

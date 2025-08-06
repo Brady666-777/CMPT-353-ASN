@@ -1,0 +1,36 @@
+data-1.csv:
+  x: mean=8.718, std=12.156, min=-22.636, max=35.237
+  y: mean=12.523, std=6.640, min=-2.565, max=27.384
+  correlation r = 0.950
+  This data set ('data-1.csv') contains paired x and y values with a strong linear relationship (r = 0.950).
+
+data-2.csv:
+  x: mean=-0.711, std=11.482, min=-33.271, max=27.647
+  y: mean=-0.749, std=6.258, min=-18.622, max=14.147
+  correlation r = 0.955
+  This data set ('data-2.csv') contains paired x and y values with a strong linear relationship (r = 0.955).
+
+data-3.csv:
+  x: mean=0.969, std=2.236, min=-2.449, max=4.519
+  y: mean=8.509, std=1.149, min=6.642, max=10.552
+  correlation r = 0.982
+  This data set ('data-3.csv') contains paired x and y values with a strong linear relationship (r = 0.982).
+
+data-4.csv:
+  x: mean=49.905, std=28.509, min=0.000, max=87.377
+  y: mean=18.554, std=16.546, min=0.000, max=44.565
+  correlation r = -0.081
+  This data set ('data-4.csv') contains paired x and y values with a little to no linear relationship (r = -0.081).
+
+data-5.csv:
+  x: mean=49.910, std=28.500, min=4.338, max=91.053
+  y: mean=18.556, std=16.541, min=0.055, max=49.934
+  correlation r = -0.088
+  This data set ('data-5.csv') contains paired x and y values with a little to no linear relationship (r = -0.088).
+
+data-6.csv:
+  x: mean=7.216, std=11.922, min=-24.334, max=35.402
+  y: mean=7.602, std=11.764, min=-22.956, max=36.080
+  correlation r = 0.935
+  This data set ('data-6.csv') contains paired x and y values with a moderate linear relationship (r = 0.935).
+

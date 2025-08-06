@@ -1,0 +1,13 @@
+1. In the A/B test analysis, I’m not p-hacking: the two tests (difference in user participation and difference in search counts) were specified in advance. At a significance level of α = 0.05, the observed p-values were all above 0.05, so there is no evidence of a real effect, and I’m comfortable concluding there is no significant difference.
+
+2. There are 7 sorting implementations. A pairwise T-test between each pair would be C(7, 2) = 21 tests. With α = 0.05 for each, the family-wise probability of at least one false positive is 1 − (1 − 0.05)^21 ≈ 0.67 (67%).
+
+3. Ranking of implementations by mean execution time (fastest to slowest), with non-distinguishable groups in parentheses:
+
+   • Fastest: qs2
+   • qs4
+   • partition_sort
+   • merge1
+   • qs1 (not significantly different from qs3)
+   • qs3 (not significantly different from qs1)
+   • Slowest: qs5

@@ -1,0 +1,18 @@
+1. Which of the four transforms suggested got you the closest to satisfying the assumptions of a T-test?
+
+Among the four transforms (log, sqrt, square, and none), the log transform (np.log1p) got the closest to satisfying the assumptions of normality for both weekdays and weekends, as indicated by the highest normality p-values among the options.
+
+2. English translations of the tests:
+
+- Original T-test: If we can reject the null hypothesis, we conclude that the average number of Reddit comments posted per day is different between weekdays and weekends.
+- Transformed data T-test: If we can reject the null hypothesis, we conclude that the average of the transformed (e.g., log-transformed) number of Reddit comments per day is different between weekdays and weekends. This suggests a difference in the underlying distributions, accounting for skewness.
+- By-week T-test: If we can reject the null hypothesis, we conclude that the average number of comments per day, aggregated by week, is different between weekdays and weekends.
+- Mann-Whitney U-test: If we can reject the null hypothesis, we conclude that the distribution of daily comment counts is not the same for weekdays and weekends; specifically, it is not equally likely that a randomly chosen weekday has more comments than a randomly chosen weekend day (or vice versa).
+
+3. Of the four approaches, which does a better job of answering the original question?
+
+The by-week T-test (using weekly means)  does the best job. It satisfies the assumptions of normality and equal variance, and it directly addresses the question of whether the average number of comments differs between weekdays and weekends, while reducing the impact of daily outliers and skewness. The Mann-Whitney U-test is also robust, but it tests for differences in distributions rather than means.
+
+4. When are more Reddit comments posted in canada, on average: weekdays or weekends?
+
+On average, more Reddit comments are posted on weekdays than on weekends in canada, as indicated by the higher mean weekday comment counts in the analysis.

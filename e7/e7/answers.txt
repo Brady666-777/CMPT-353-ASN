@@ -1,0 +1,24 @@
+Question 1: Looking at your dog-rates.ipynb, do you think the residuals are close-enough to being normal to look at the OLS p-value? Can you reasonably conclude that the ratings are increasing?
+
+Based on the residual statistics and histogram:
+- Mean residual: 0.000000 
+- Standard deviation: 1.424638 
+- Min residual: -11.851
+- Max residual: 4.759
+- Number of data points: 1669
+
+Looking at the histogram, the residuals are approximately normally distributed around zero, which is encouraging for OLS assumptions. 
+
+However, there are some concerns:
+Outliers present: The range from -11.851 to 4.759 shows some extreme values
+Slight asymmetry: The negative tail extends further than the positive tail
+
+In conclusion, the residuals are reasonably close to normal for practical purposes. The large sample size (n=1669) and the approximately normal distribution in the histogram suggest that the OLS p-value is valid for inference. If the p-value indicates statistical significance, we can reasonably conclude that ratings are changing over time, though the presence of outliers suggests we should interpret the magnitude of the effect cautiously.
+
+Question 2: Do you think that the new "better" prediction is letting the Kalman filter do a better job capturing the true signal in the noise?
+
+Yes, the improved prediction model likely helps the Kalman filter perform better at capturing the true signal. The Kalman filter's effectiveness depends heavily on having a good transition model that accurately represents the underlying system dynamics. 
+
+When the regression coefficients used in the transition matrix are more accurate (the "better" prediction), the Kalman filter can make more realistic predictions about the next state and reduce the impact of measurement noise by having a more reliable model
+
+The fact that the residuals have a mean of essentially zero suggests the model is unbiased, which is crucial for the Kalman filter's performance. A better prediction model means the filter can more effectively separate the true signal from noise, leading to smoother and more accurate estimates of the underlying trend.
